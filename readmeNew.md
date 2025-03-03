@@ -1,8 +1,9 @@
+# Projet : Classification d’âge et de genre en utilisant des réseaux de neurones convolutionnels (CNN)
 
-# Mise en contexte
+# 📄 Mise en contexte
 Ce projet a pour objectif de développer une application capable de prédire le genre et l’âge à partir d’une image de visage. 
 
-### L’objectif de ce projet va être de réaliser 4 modèles différents en utilisant le jeu de données UTKFace, à savoir :  
+### 🎯 L’objectif de ce projet va être de réaliser 4 modèles différents en utilisant le jeu de données UTKFace, à savoir :  
 * Modèle de Classification de Genre avec CNN 
 * Modèle de Classification d’âge avec une approche de régression 
 * Modèle de Classification simultanée de Genre et d’âge 
@@ -12,7 +13,7 @@ Ce projet a pour objectif de développer une application capable de prédire le 
 * Créer une interface Gradio
 * Déployer l'application et tous les modèles sur HuggingFaces
 
-## Membres de l'équipe
+## 👥 Membres de l'équipe
 * CABO India
 * GIFFARD Axel
 * HAMSEK Fayçal
@@ -21,7 +22,7 @@ Ce projet a pour objectif de développer une application capable de prédire le 
 La classification de l'âge et du genre est un processus permettant de détecter l'âge et le genre (Homme/Femme) d'une personne en se basant sur des caractéristiques de son visage. On considère les caractéristiques d'une personne par ses traits de visage, ses imperfections, sa pilosité, les rides,etc... \
 Toutes ces caractéristiques amènes à détecter l'âge ou le genre d'une personne en fonction d'algorithmes de DeepLearning. Cependant, bien que la détection soit possible, **elle n’en est pas moins certifiée véridique tout le temps.** L'estimation de l'âge varie selon **plusieurs facteurs**, tels que les lumières de l'image, les expressions faciales, le maquillage pour rendre la peau plus "jeune", ...
 
-# L'objectif de réaliser ce projet
+# 🎯 Pourquoi réaliser ce projet ? 
 <details>
 <summary><b>Déroulez pour voir l'ensemble des objectifs : 
 </b></summary><br/>
@@ -46,15 +47,16 @@ Cela permettra au cours de nos études de présenter ce projet et que les utilis
 
 </details>
   
-## Langages et outils
+## 🛠️ Langages et outils
 - [Python](https://docs.python.org/)
 - [Tensorflow](https://www.tensorflow.org/api_docs).
 - [Keras](https://keras.io/).
 - [Gradio](https://www.gradio.app/docs).
 - [HuggingFaces](https://huggingface.co/)
+- [Pandas]()
 
 
-**Résumé de nos modèles** 
+## ➡️ Résumé de nos modèles 
 
 | **Modèle**                                                                                | **Résumé**                                                                                                                                                                        | **Liens**                                                    | **Métriques**                          |
 |-------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------|-------------------------------------------|
@@ -67,7 +69,7 @@ Réalisé avec https://www.tablesgenerator.com/markdown_tables
 </details>
 
 
-# Le dataset UTKFace
+# 🖼️ Le dataset UTKFace
    ## UTKFace
    Le dataset est [UTKFace](https://susanqq.github.io/UTKFace/). C’est un dataset composé de 23708 images avec toutes les ethniques, l'ensemble des genres et de l'âge allant de 0 à 116 ans. Ces images peuvent avoir des tons de couleurs différents, 
   et des variations dans l’expression des visages.
@@ -89,7 +91,7 @@ On repère 52.3 % d'hommes et 47.7 % de femmes.
 En faisant cette visualisation, nous remarquons qu'il y a un fort déséquilibre entre les différents âges. Par exemple, il y a énormément d’images de personnes qui ont un âge proche de 26 à 40 ans, peu de jeunes et encore moins de personnes âgées autour de 70 ans. En faisant la moyenne, nous en avons trouvé que le taux le plus important en termes d’âge était de 33 ans.
 **En conséquence, le modèle pourrait être plus performant pour estimer l’âge des personnes ayant entre 20 et 40 ans que pour estimer l’âge des personnes entre 60 et 116 ans.**
 
-### Tâches pour optimiser les modèles : 
+### ✔️ Tâches pour optimiser les modèles : 
 * Normaliser le genre et l'âge
 * Réaliser de la Data Augmentation
 * Tranche d'âge pour le modèle de l'âge
