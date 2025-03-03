@@ -161,6 +161,7 @@ Ce qui peut donner pour un set d'images comme celui-ci :
 
 
 #### Contents
+![image](https://github.com/user-attachments/assets/989e433c-5e9f-4831-84fd-d343160c7999)
 
 1. [Custom Dataset](#custom-dataset)
 2. [Define DataLoader](#define-dataloader)
