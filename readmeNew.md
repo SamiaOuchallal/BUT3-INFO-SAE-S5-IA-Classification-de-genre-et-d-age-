@@ -1,7 +1,5 @@
-# Projet: Classification de genre et d'âge en utilisant les réseaux de neurones convolutionnels (CNN)
-![alt text](https://github.com/Ebimsv/Facial_Age_estimation_PyTorch/blob/main/pics/Age-Estimation.png)
 
-# Mis en contexte
+# Mise en contexte
 Ce projet a pour objectif de développer une application capable de prédire le genre et l’âge à partir d’une image de visage. 
 
 ### L’objectif de ce projet va être de réaliser 4 modèles différents en utilisant le jeu de données UTKFace, à savoir :  
@@ -69,198 +67,98 @@ Réalisé avec https://www.tablesgenerator.com/markdown_tables
 </details>
 
 
-# Préparation des données
+# Le dataset UTKFace
    ## UTKFace
-   Le dataset est UTKFace. C’est un dataset composé de 23708 images avec toutes les ethniques, l'ensemble des genres et de l'âge allant de 0 à 116 ans. Ces images peuvent avoir des tons de couleurs différents, 
+   Le dataset est [UTKFace](https://susanqq.github.io/UTKFace/). C’est un dataset composé de 23708 images avec toutes les ethniques, l'ensemble des genres et de l'âge allant de 0 à 116 ans. Ces images peuvent avoir des tons de couleurs différents, 
   et des variations dans l’expression des visages.
   
-## This is the diagram of proposed model  
-
-![alt text](https://github.com/Ebimsv/Facial_Age_estimation_PyTorch/blob/main/pics/method.png)  
-
-# Step 4: Implementation of the selected method
-## Dataset
-
-In this sub-section we see some important datasets in the field of Facial age estimation:
-
-<details>
-<summary><b>1. MORPH</b></summary><br/>
-MORPH is a facial age estimation dataset, which contains 55,134 facial images of 13,617 subjects ranging from 16 to 77 years old.
-</details>
-
-<details>
-<summary><b>2. Adience</b></summary><br/>
-The Adience dataset, published in 2014, contains 26,580 photos across 2,284 subjects with a binary gender label and one label from eight different age groups, partitioned into five splits. The key principle of the data set is to capture the images as close to real world conditions as possible, including all variations in appearance, pose, lighting condition and image quality, to name a few. For more information and download the dataset, please go to (https://talhassner.github.io/home/projects/Adience/Adience-data.html)
-</details>
-
-<details>
-<summary><b>3. CACD (Cross-Age Celebrity Dataset)</b></summary><br/>
-The Cross-Age Celebrity Dataset (CACD) contains 163,446 images from 2,000 celebrities collected from the Internet. The images are collected from search engines using celebrity name and year (2004-2013) as keywords. Therefore, it is possible to estimate the ages of the celebrities on the images by simply subtract the birth year from the year of which the photo was taken. For more information, please go to (https://bcsiriuschen.github.io/CARC/)       
-
-</details>
-
-<details>
-<summary><b>4. FG-NET</b></summary><br/>
-FGNet is a dataset for age estimation and face recognition across ages. It is composed of a total of 1,002 images of 82 people with age range from 0 to 69 and an age gap up to 45 years.
-</details>
-
-<details>
-<summary><b>5. UTKFace</b></summary><br/>
-UTKFace dataset is a large-scale face dataset with long age span (range from 0 to 116 years old). The dataset consists of over 20,000 face images with annotations of age, gender, and ethnicity. The images cover large variation in pose, facial expression, illumination, occlusion, resolution, etc. This dataset could be used on a variety of tasks, e.g., face detection, age estimation, age progression/regression, landmark localization, etc.
-- consists of 20k+ face images in the wild (only single face in one image)
-- provides the correspondingly aligned and cropped faces
-- provides the corresponding landmarks (68 points)
-- images are labelled by age, gender, and ethnicity
-
-For more information and download, please refer to the [UTKFace](https://susanqq.github.io/UTKFace/)   
-In this project, I downloaded cropped version of UTKFace from [Kaggle](https://www.kaggle.com/datasets/abhikjha/utk-face-cropped?select=utkcropped)
-
-</details>
-
-**Note**: In this project, we use UTKFace. Please download from this link and use `utkcropped` folder to create csv: [Kaggle](https://www.kaggle.com/datasets/abhikjha/utk-face-cropped?select=utkcropped)
-
-### 1. EDA (Exploratory Data Analysis)
-
-This repository contains code for performing exploratory data analysis on the UTK dataset, which consists of images categorized by age, gender, and ethnicity.
-
-#### Contents
-
-<details>
-  <summary><b>I. Plot the Images in the UTK Dataset and create a csv file</b></summary><br/>
-
-<details>
-  <summary><b>1. Displaying sample images</b></summary><br/>
-
-This may include loading and displaying sample images, obtaining image statistics, or performing basic image processing tasks.  
-
-![alt text](https://github.com/Ebimsv/Facial_Age_estimation_PyTorch/blob/main/pics/show_rand_samples.png) 
-</details>
-
-<details>
-  <summary><b>2. Create a CSV File with Labels</b></summary><br/>
-The labels may include information such as age, gender, and ethnicity for each image in the dataset.  
-
-![alt text](https://github.com/Ebimsv/Facial_Age_estimation_PyTorch/blob/main/pics/csv_file.png)  
-
-</details>
-
-</details>
-
-<details>
-<summary><b>II. Univariate Analysis</b></summary><br/>
-Univariate analysis is a type of exploratory data analysis (EDA) that focuses on examining one variable at a time.
-These histograms can provide insights into the dataset's composition and help identify any imbalances or patterns. 
-
-<details>
-  <summary><b>1. Histogram for Age</b></summary><br/>
-
-![alt text](https://github.com/Ebimsv/Facial_Age_estimation_PyTorch/blob/main/pics/age_histogram.png)  
-</details>
-
-<details>
-  <summary><b>2. Histogram for Gender</b></summary><br/>
-
-![alt text](https://github.com/Ebimsv/Facial_Age_estimation_PyTorch/blob/main/pics/gender_histogram.png) 
-</details>
-
-<details>
-  <summary><b>3. Histogram for Ethnicity</b></summary><br/>
-
-![alt text](https://github.com/Ebimsv/Facial_Age_estimation_PyTorch/blob/main/pics/ethnicity_histogram.png)
-</details>
-
-</details>
+  ![alt text](images/Personnes.png)  
 
 
-<details>
-<summary><b>III. Bivariate Analysis</b></summary><br/>
-Bivariate analysis examines relationships between two variables
+## Distribution du genre 
 
-<details>
-<summary><b>1. Cross-tabulation of gender and ethnicity</b></summary><br/>
-Calculating the cross-tabulation of gender and ethnicity using the `pandas.crosstab()` function. 
-  This analysis can reveal the relationship between gender and ethnicity within the dataset and provide useful insights.  
+![alt text](images/distribGenre.png)
+
+On repère 52.3 % d'hommes et 47.7 % de femmes.
+**Cette distribution indique un potentiel biais concernant la classe minoritaire (femmes) et la classe majoritaire (hommes). Les modèles seront susceptibles de se baser sur la classe majoritaire durant l'entraînement, ce qui peut conduire à un surapprentissage (overfitting). Or, ce biais reste néanmoins faible et ne devrait pas poser d'importants problèmes dans les résultats car une différence de 4 % peut être considéré comme quasi-équilibrée.
+
+## Distribution de l'âge 
+
+![alt text](images/DistributionAge.png)
+
+En faisant cette visualisation, nous remarquons qu'il y a un fort déséquilibre entre les différents âges. Par exemple, il y a énormément d’images de personnes qui ont un âge proche de 26 à 40 ans, peu de jeunes et encore moins de personnes âgées autour de 70 ans. En faisant la moyenne, nous en avons trouvé que le taux le plus important en termes d’âge était de 33 ans.
+**En conséquence, le modèle pourrait être plus performant pour estimer l’âge des personnes ayant entre 20 et 40 ans que pour estimer l’âge des personnes entre 60 et 116 ans.**
+
+### Tâches pour optimiser les modèles : 
+* Normaliser le genre et l'âge
+* Réaliser de la Data Augmentation
+* Tranche d'âge pour le modèle de l'âge
+* Ajuster et expérimenter les paramètres et hyperparamètres
+* Expérimenter les tailles de Batch
+
+## Préparation des données 
+Nous faisons un "split" des données grâce à la méthode train_test_split de la librairie sklearn
+`
+    x_train, x_test, y_train, y_test = train_test_split(
+        df['image'],
+        df['gender_encoded']],
+        test_size=0.2,
+        random_state=42
+    )
+    # Split supplémentaire pour validation
+    x_train, x_val, y_train, y_val = train_test_split(
+        x_train,
+        y_train,
+        test_size=0.2, 
+        random_state=42
+    )
+` 
+
+| Dataset      	| Données 	|
+|--------------	|---------	|
+| Entraînement 	| 18966   	|
+| Validation   	| 4742    	|
+
+Nous divisons le dataset en train + val avec 80 % pour le train et 20 % pour le val
+
+## Pré-traitement des données
+
+Les images sont redimenssionnées à une taille uniforme : **224x224** pour les modèles pré-entraînés (conventions de ces modèles) et **128x128** pour le reste des modèles.
+
+### Normalisation de l'âge et du genre
+
+* On vient normaliser l'âge en prenant en compte l'âge supposé maximale dans le dataset (Nous avons pris la valeur 120, même si l'âge maximale est de 116 ans pour faciliter les calculs). 
+```python
+normalized_age = tf.cast(age,tf.float32) / 120.0
+```
+* On vient normaliser le genre en divisant par 255 pour transformer la valeur des pixels entre 0 et 1. Ces valeurs vont s'adapter plus rapidement lors de l'entraînement
+  ```python
+  image=image/255.0
+  ```
+
+### Data Augmentation
+La technique de la Data Augmentation va permettre d'augmenter la taille du dataset : En créant de nouvelles images à partir des images existantes, on multiplie artificiellement la quantité de données d'entraînement disponibles.
+Elle va permettre également de réduire le risque d'overfitting en l'empêchant de se baser sur les mêmes visages.
+Elle inclue des transformations de type : 
+* Rotation
+* Flip
+* Zoom
+* Luminosité/contraste/saturation
 
 ```python
-cross_tab = pd.crosstab(df['gender'], df['ethnicity'])`  
-print(cross_tab)
+image = tf.image.random_crop(image, size=(96, 96, 3))
+        image = tf.image.resize(image, size=size)
+        image = tf.image.random_flip_left_right(image)
+        image = tf.image.random_brightness(image, max_delta=0.2)
 ```
 
-   ![alt text](https://github.com/Ebimsv/Facial_Age_estimation_PyTorch/blob/main/pics/cross-tabulation.png)
-</details>
 
-<details>
-<summary><b>2. Create Violin plots and Box Plots for Age (Separated by Gender)</b></summary><br/>
-These plots can help identify any differences or patterns in the age distribution between men and women in the UTK dataset.  
+</br>
+Ce qui peut donner pour un set d'images comme celui-ci : 
 
-![alt text](https://github.com/Ebimsv/Facial_Age_estimation_PyTorch/blob/main/pics/violin_plot_age_men_women.png)
-</details>
+![image](https://github.com/user-attachments/assets/989e433c-5e9f-4831-84fd-d343160c7999)
 
 
-<details>
-<summary><b>3. Create Violin Plots and Box Plots for Age (Separated by Ethnicity)</b></summary><br/>
-These plots can help identify any differences or patterns in the age distribution among different ethnicities in the UTK dataset.  
-
-![alt text](https://github.com/Ebimsv/Facial_Age_estimation_PyTorch/blob/main/pics/violin_plot_Separated_by_Ethnicity.png)
-</details>
-
-</details>
-
-### 2. Dataset Splitting
-
-As you can saw in the **univariate analysis** section, the distribution of age isn't balance, and it's better to use **stratified sampling** to consider imbalancing in the age feature.
-
-<details>
-  <summary><b>1. Stratified sampling, and save csv</b></summary><br/>
-  
-The stratified sampling works by dividing the dataset into groups based on the values of the stratification feature (in this case, age). It then randomly samples from each group to create the train and test sets. The goal is to maintain the same proportion of different age groups in both sets, which helps ensure that the models trained on the training set generalize well to unseen data with different age distributions.
-
-By using stratified sampling, you can obtain a representative train-test split that preserves the distribution of the age feature, which can be useful for building models that are robust across different age groups.
-
-We can do stratify sampling with this code:
-
-```python
-df = pd.read_csv("./csv_dataset/utkface_dataset.csv")
-df_train, df_temp = train_test_split(df, train_size=0.8, stratify=df.age, random_state=42)
-df_test, df_valid = train_test_split(df_temp, train_size=0.5, stratify=df_temp.age, random_state=42) 
-```
-
-</details>
-
-<details>
-  <summary><b>2. Save and Plot the Training, Validation, and Test sets in separate CSV files</b></summary><br/>
-
-Save the training, validation, and test sets in separate CSV files:   
-
-```python
-df_train.to_csv('./csv_dataset/train_set.csv', index=False) 
-df_valid.to_csv('./csv_dataset/valid_set.csv', index=False)  
-df_test.to_csv('./csv_dataset/test_set.csv', index=False)
-```
-
-And now, plot each histograms with this lines of code:  
-
-```python
-fig, axes = plt.subplots(1, 3, figsize=(15, 5))
-axes[0].hist(df_train.age, bins=len(df_train.age.unique())); axes[0].set_title('Train') 
-axes[1].hist(df_valid.age, bins=len(df_valid.age.unique())); axes[1].set_title('Validation')
-axes[2].hist(df_test.age, bins=len(df_test.age.unique())); axes[2].set_title('Test')
-```
-
-![alt text](https://github.com/Ebimsv/Facial_Age_estimation_PyTorch/blob/main/pics/histogram_train_valid_test.png)
-
-This histograms will help ensure that the distributions of age in these sets are similar, indicating a balanced and representative dataset split.  
-This step is crucial for further analysis or modeling tasks, as it allows you to access and manipulate each set individually.
-</details>
-
-### 3. Transformations
-
-The defined transformations include resizing images, applying random flips and rotations, adjusting image color, converting images to tensors, and normalizing pixel values.
-I wrote all of them in `Custom-dataset_dataloader.py` file.
-
-### 4. Custom Dataset and DataLoader
-
-The custom dataset allows you to load and preprocess your own data, while the dataloader provides an efficient way to iterate over the dataset during training or evaluation.
 
 #### Contents
 
