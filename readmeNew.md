@@ -53,7 +53,9 @@ Cela permettra au cours de nos études de présenter ce projet et que les utilis
 - [Keras](https://keras.io/).
 - [Gradio](https://www.gradio.app/docs).
 - [HuggingFaces](https://huggingface.co/)
-- [Pandas]()
+- [Pandas](https://pandas.pydata.org/docs/)
+- [Matplotlib](https://matplotlib.org/stable/index.html)
+- [Seaborn](https://seaborn.pydata.org/)
 
 
 ## ➡️ Résumé de nos modèles 
