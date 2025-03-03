@@ -131,9 +131,9 @@ Les images sont redimenssionnées à une taille uniforme : **224x224** pour les 
 
 ### Normalisation de l'âge et du genre
 
-* On vient normaliser l'âge en prenant en compte l'âge supposé maximale dans le dataset (Nous avons pris la valeur 120, même si l'âge maximale est de 116 ans pour faciliter les calculs). 
+* On vient normaliser l'âge en prenant en compte l'âge supposé maximale dans le dataset,
 ```python
-normalized_age = tf.cast(age,tf.float32) / 120.0
+normalized_age = tf.cast(age,tf.float32) / 116.0
 ```
 * On vient normaliser le genre en divisant par 255 pour transformer la valeur des pixels entre 0 et 1. Ces valeurs vont s'adapter plus rapidement lors de l'entraînement
   ```python
