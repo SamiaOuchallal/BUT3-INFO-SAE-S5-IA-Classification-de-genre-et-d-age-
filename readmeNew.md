@@ -3,7 +3,7 @@
 # 📄 Mise en contexte
 Ce projet a pour objectif de développer une application capable de prédire le genre et l’âge à partir d’une image de visage. 
 
-### 🎯 L’objectif de ce projet va être de réaliser 4 modèles différents en utilisant le jeu de données UTKFace, à savoir :  
+### L’objectif de ce projet va être de réaliser 4 modèles différents en utilisant le jeu de données UTKFace, à savoir :  
 * Modèle de Classification de Genre avec CNN 
 * Modèle de Classification d’âge avec une approche de régression 
 * Modèle de Classification simultanée de Genre et d’âge 
@@ -22,7 +22,7 @@ Ce projet a pour objectif de développer une application capable de prédire le 
 La classification de l'âge et du genre est un processus permettant de détecter l'âge et le genre (Homme/Femme) d'une personne en se basant sur des caractéristiques de son visage. On considère les caractéristiques d'une personne par ses traits de visage, ses imperfections, sa pilosité, les rides,etc... \
 Toutes ces caractéristiques amènes à détecter l'âge ou le genre d'une personne en fonction d'algorithmes de DeepLearning. Cependant, bien que la détection soit possible, **elle n’en est pas moins certifiée véridique tout le temps.** L'estimation de l'âge varie selon **plusieurs facteurs**, tels que les lumières de l'image, les expressions faciales, le maquillage pour rendre la peau plus "jeune", ...
 
-# 🎯 Pourquoi réaliser ce projet ? 
+# Pourquoi réaliser ce projet ? 
 <details>
 <summary><b>Déroulez pour voir l'ensemble des objectifs : 
 </b></summary><br/>
@@ -58,7 +58,7 @@ Cela permettra au cours de nos études de présenter ce projet et que les utilis
 - [Seaborn](https://seaborn.pydata.org/)
 
 
-## ➡️ Résumé de nos modèles 
+## Résumé de nos modèles 
 
 | **Modèle**                                                                                | **Résumé**                                                                                                                                                                        | **Liens**                                                    | **Métriques**                          |
 |-------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------|-------------------------------------------|
