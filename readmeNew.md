@@ -42,9 +42,8 @@ Cela implique d'avoir des notions en mathématiques, science des données, et in
 - **Analyser les biais potentiels** \
 Identifier les biais potentiels dans les prédictions selon l'éclairage, la qualité de l'image, etc. Les modèles doivent être robustes pour performer de manière constante.
 
-- **Développer une interface utilisateur** \ 
+- **Développer une interface utilisateur** \
 Créer une interface simple permettant de tester les modèles sur de nouvelles images avec Gradio.
-
 Cela permettra au cours de nos études de présenter ce projet et que les utilisateurs puissent tester l'ensemble de nos modèles.
 
 </details>
@@ -71,8 +70,10 @@ Réalisé avec https://www.tablesgenerator.com/markdown_tables
 
 
 # Préparation des données
-The ResNet-50 model combined with regression is a powerful approach for facial age estimation. ResNet-50 is a deep convolutional neural network architecture that has proven to be highly effective in various computer vision tasks. By utilizing its depth and skip connections, ResNet-50 can effectively capture intricate facial features and patterns essential for age estimation. The regression component of the model enables it to directly predict the numerical age value, making it suitable for continuous age estimation rather than discrete age classification. This combination allows the model to learn complex relationships between facial attributes and age, providing accurate and precise age predictions. Overall, the ResNet-50 model with regression offers a robust and reliable solution for facial age estimation tasks.
-
+   ## UTKFace
+   Le dataset est UTKFace. C’est un dataset composé de 23708 images avec toutes les ethniques, l'ensemble des genres et de l'âge allant de 0 à 116 ans. Ces images peuvent avoir des tons de couleurs différents, 
+  et des variations dans l’expression des visages.
+  
 ## This is the diagram of proposed model  
 
 ![alt text](https://github.com/Ebimsv/Facial_Age_estimation_PyTorch/blob/main/pics/method.png)  
