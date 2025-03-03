@@ -163,7 +163,7 @@ Ce qui peut donner pour un set d'images comme celui-ci :
 ![image](https://github.com/user-attachments/assets/989e433c-5e9f-4831-84fd-d343160c7999)
 
 
-## Hyperparamètres utilisées
+## 📄 Hyperparamètres utilisées
 * Type d'activation : (relu, Sigmoid,softmax)
 * learning rate : Généralement 0.0001
 * Taille du batch : Généralement 32
