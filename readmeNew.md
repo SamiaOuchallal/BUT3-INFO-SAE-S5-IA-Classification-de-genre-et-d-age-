@@ -159,242 +159,91 @@ Ce qui peut donner pour un set d'images comme celui-ci :
 ![image](https://github.com/user-attachments/assets/989e433c-5e9f-4831-84fd-d343160c7999)
 
 
+## Hyperparamètres utilisées
+* Type d'activation : (relu, Sigmoid,softmax)
+* learning rate : Généralement 0.0001
+* Taille du batch : Généralement 32
+* Optimiseur : Généralement Adam
+* Dropout : Testé sur 0.2, 0.3 et 0.5
+* Kernel_regularizer : Généralement 0.0005
+* kernel_size
+* strides
+* pooling_size=Généralement MaxPooling
 
-#### Contents
-![image](https://github.com/user-attachments/assets/989e433c-5e9f-4831-84fd-d343160c7999)
-
-1. [Custom Dataset](#custom-dataset)
-2. [Define DataLoader](#define-dataloader)
-
-<details>
-  <summary><b>1. Custom Dataset</b></summary><br/>
-The custom dataset is designed to handle your specific data format and apply any necessary preprocessing steps. You can modify the dataset class according to your data structure, file paths, and preprocessing requirements.
-</details>
-
-<details>
-  <summary><b>2. DataLoader</b></summary><br/>
-The dataloader is responsible for efficiently loading and batching the data from the custom dataset. It provides an iterator interface that allows you to easily access the data during model training or evaluation. You can customize the dataloader settings such as batch size, shuffling, and parallel data loading based on your specific needs.
-</details>
-
-## 5. Model
-
-The models used in this project are ResNet50 and EfficientNet B0.
-
-### Contents
-
-1. [ResNet50 Model](#resnet50-model)
-2. [EfficientNet B0 Model](#efficientnet-b0-model)
-3. [Vision transformer](#efficientnet-b0-model)
+### Modèles pré-entraînés + Graphiques
+Chaque image est en dimension 224x224
 
 <details>
-  <summary><b>1. ResNet50</b></summary><br/>
-The ResNet50 architecture is a widely-used convolutional neural network that has shown impressive performance on various computer vision tasks. You will learn how to load the pre-trained ResNet50 model, fine-tune it on your custom dataset, and use it for inference.  
-
-   ![alt text](https://github.com/Ebimsv/Facial_Age_estimation_PyTorch/blob/main/pics/Resnet50.png)
-   
-Define Resnet:    
-
-```python
-model = AgeEstimationModel(input_dim=3, output_nodes=1, model_name='resnet', pretrain_weights='IMAGENET1K_V2').to(device)
-```
-
-</details>
-
-<details>
-  <summary><b>2. EfficientNet B0</b></summary><br/>
-EfficientNet is a family of convolutional neural networks that have achieved state-of-the-art performance on image classification tasks while being computationally efficient. You will learn how to load the pre-trained EfficientNet B0 model, adapt it to your custom dataset, and leverage its capabilities for classification or feature extraction.  
-
-   ![alt text](https://github.com/Ebimsv/Facial_Age_estimation_PyTorch/blob/main/pics/EfficientNet.png)
-   
-Define Efficientnet:   
-
-```python
-model = AgeEstimationModel(input_dim=3, output_nodes=1, model_name='efficientnet', pretrain_weights='IMAGENET1K_V1').to(device)
-```
-
-</details>
-
-<details>
-  <summary><b>3. Vision Transformer</b></summary><br/>
-A vision transformer (ViT) is a transformer designed for computer vision.[1] A ViT breaks down an input image into a series of patches (rather than breaking up text into tokens), serialises each patch into a vector, and maps it to a smaller dimension with a single matrix multiplication. These vector embeddings are then processed by a transformer encoder as if they were token embeddings.
-
-   ![alt text](https://github.com/Ebimsv/Facial_Age_estimation_PyTorch/blob/main/pics/Vision_Transformer.gif) 
-   
-Define Vision Transformer:  
-
-```python
-model = AgeEstimationModel(input_dim=3, output_nodes=1, model_name='vit', pretrain_weights=True).to(device)
-```
-
-</details>
-
-
-## 6. Training Process
-
-This repository contains code for the training process of a model, including finding hyperparameters, the training and evaluation loop, and plotting learning curves.
-
-### Contents
-
-1. [Finding Hyperparameters](#finding-hyperparameters)
-   1. [Step 1: Calculate the Loss for an Untrained Model](#step-1-calculate-the-loss-for-an-untrained-model-using-a-few-batches)
-   2. [Step 2: Train and Overfit the Model on a Small Subset of the Dataset](#step-2-try-to-train-and-overfit-the-model-on-a-small-subset-of-the-dataset)
-   3. [Step 3: Train the Model for a Limited Number of Epochs](#step-3-train-the-model-for-a-limited-number-of-epochs-experimenting-with-various-learning-rates)
-   4. [Step 4: Create a Small Grid Using Weight Decay and the Best Learning Rate and save it to a CSV file](#step-4-create-a-small-grid-using-the-weight-decay-and-the-best-learning-rate-and-save-it-to-a-CSV-file)
-   5. [Step 5: Train the Model for Longer Epochs Using the Best Model from Step 4](#step-5-train-model-for-longer-epochs-using-the-best-model-from-step-4)
-2. [Training and Evaluation Loop](#train-and-evaluation-loop)
-3. [Plotting Learning Curves with Matplotlib and TensorBoard](#plot-learning-curves)
-4. [Save the best model from .pt to .jit](#Save-the-best-model-from-.pt-to-.jit)
-
-#### Finding Hyperparameters
-
-The process involves several steps, including calculating the loss for an untrained model, overfitting the model on a small subset of the dataset, training the model for a limited number of epochs with various learning rates, creating a small grid using weight decay and the best learning rate, and finally training the model for longer epochs using the best model from the previous step.
-
-<details>
-  <summary><b>Step 1: Calculate the loss for an untrained model using one batch</b></summary><br/>
-This step helps us to understand that the forward pass of the model is working. The forward pass of a neural network model refers to the process of propagating input data through the model's layers to obtain predictions or output values.
-
-This is code for step 1 in `hyperparameters_tuning.py`:
-
-```python
-x_batch, y_batch, _, _ = next(iter(train_loader)) 
-outputs = model(x_batch.to(device))
-loss = loss_fn(outputs, y_batch.to(device)) 
-print(loss) 
-```
-</details>
-
-<details>
-  <summary><b>Step 2: Train and overfit the model on a small subset of the dataset</b></summary><br/>
-The goal of Step 2 is to train the model on a small subset of the dataset to assess its ability to learn and memorize the training data.
+  <summary><b>EfficientNet (B0/B1/B2)</b></summary><br/>
   
-```python
-_, mini_train_dataset = random_split(train_set, (len(train_set)-1000, 1000)) 
-mini_train_loader = DataLoader(mini_train_dataset, 5) 
+  ![ image](images/EfficientNet-Architecture-diagram.png)
 
-num_epochs = 5
-for epoch in range(num_epochs):  
-    model, loss_train, train_metric = train_one_epoch(model, mini_train_loader, loss_fn, optimizer, metric, epoch=epoch) 
-```
- 
-</details>
+  # EfficientNetB0 :
+  ```python
+  base_model_efficientnet = EfficientNetB0(weights='imagenet', include_top=False, input_shape=(IMAGE_SIZE[0], IMAGE_SIZE[1], 3))
+  ```
+![image](images/EfficietNetB0Courbe.png)
 
-<details>
-  <summary><b>Step 3: Train the model for a limited number of epochs, experimenting with various learning rates</b></summary><br/>
-This step helps us to identify the learning rate that leads to optimal training progress and convergence.  
+ ### Résultats (50 epochs)
 
-```python
-for lr in [0.001, 0.0001, 0.0005]:
-    print(f'lr is: {lr}')
-    model = AgeEstimationModel(input_dim=3, output_nodes=1, model_name='efficientnet',pretrain_weights='IMAGENET1K_V1').to(device)
-    loss_fn = nn.L1Loss()
-    optimizer = optim.SGD(model.parameters(), lr=lr, momentum=0.9)
-    for epoch in range(num_epochs):
-        model, loss_train, train_metric = train_one_epoch(model, train_loader, loss_fn, optimizer, metric, epoch=epoch)
-    print('')
-```
-</details>
+  # EfficientNetB1 :
+  ```python
+  base_model_efficientnet = EfficientNetB1(weights='imagenet', include_top=False, input_shape=(IMAGE_SIZE[0], IMAGE_SIZE[1], 3))
+  ```
+ ### Résultats (50 epochs)
 
-<details>
-  <summary><b>Step 4: Create a small grid using weight decay and the best learning rate and save it to a CSV file</b></summary><br/>
-The goal of Step 4 is to create a small grid using weight decay and the best learning rate, and save it to a CSV file. This grid allows us to examine how weight decay regularization impacts the performance of the model.
+  # EfficientNetB2 :  
+  ```python
+  base_model_efficientnet = EfficientNetB2(weights='imagenet', include_top=False, input_shape=(IMAGE_SIZE[0], IMAGE_SIZE[1], 3))
+  ```
 
-```python
-small_grid_list = []
-for lr in [0.0005, 0.0008, 0.001]: 
-    for wd in [1e-4, 1e-5, 0.]: 
-        print(f'LR={lr}, WD={wd}')
-        model = AgeEstimationModel(input_dim=3, output_nodes=1, model_name='efficientnet', pretrain_weights='IMAGENET1K_V1').to(device)
-        loss_fn = nn.L1Loss()
-        optimizer = optim.SGD(model.parameters(), lr=lr, momentum=0.9, weight_decay=wd)
-        for epoch in range(num_epochs):
-            model, loss_train, train_metric = train_one_epoch(model, mini_train_loader, loss_fn, optimizer, metric, epoch=epoch)
-        small_grid_list.append([lr, wd, loss_train])
-```
+ ### Résultats (50 epochs)
+  ![image](images/EfficientNetB2Courbes.png)
+
 
 </details>
-
 <details>
-  <summary><b>Step 5: Train the model for longer epochs using the best model from step 4</b></summary><br/>
-The goal of Step 5 is to train the model for longer epochs using the best model obtained from Step 4. This step aims to maximize the model's learning potential and achieve improved performance by allowing it to learn from the data for an extended period.  
+  <summary><b>VGG16</b></summary><br/>
   
-Please refer to `train.py`
+  ![image](images/VGG16.png)
+  
+   ### Résultats (50 epochs)
+
+  ![ image](images/images/VGG16Courbes.png)
+
 </details>
 
 <details>
-  <summary><b>Step 6: Save the best model from .pt to .jit</b></summary><br/>
-The goal of this step is to convert the best model from .pt to .jit format. This conversion is primarily done to optimize and enhance the model's performance during deployment.
+  <summary><b>MobileNetV2 </b></summary><br/>
+  
+  ![image](images/images/539617_1_En_8_Fig10_HTML.png)
+  
+   ### Résultats (50 epochs)
+   
+  ![image](images/images/images/MobileNetV2Courbes.png)
+
 </details>
-
-#### Train and Evaluation Loop
-
-The train loop handles the training process, including forward and backward passes, updating model parameters, and monitoring training metrics. The evaluation loop performs model evaluation on a separate validation or test dataset and computes relevant evaluation metrics.
 
 <details>
-  <summary><b>Plotting Learning Curves with Matplotlib and TensorBoard</b></summary><br/>
-Learning curves visualize the model's training and validation performance over epochs, providing insights into the model's learning progress, convergence, and potential issues such as overfitting or underfitting.\
-TensorBoard is a tool for providing the measurements and visualizations needed during the machine learning workflow. It enables tracking experiment metrics like loss and accuracy, visualizing the model graph, projecting embeddings to a lower dimensional space, and much more.  
-
-![alt text](https://github.com/Ebimsv/Facial_Age_estimation_PyTorch/blob/main/pics/loss-tensorboard.png)  
-</details>
-
-#### Inference function
-Define the inference function (`inference.py`): The inference function takes a pre-trained Age Estimation model, an input image path, and an output image path. It loads the model checkpoint, performs inference on the input image, and saves the output image with the estimated age.
-
-**Run the inference**: Call the inference function with the loaded model, input image path, and output image path. 
-The function will process the image, estimate the age, and save the output image with the estimated age written on it.
-
-<details>
-  <summary><b>Inference pipeline</b></summary><br/>
-
-![alt text](https://github.com/Ebimsv/Facial_Age_estimation_PyTorch/blob/main/pics/age_estimation_inference.png)  
+  <summary><b>ResNet50</b></summary><br/>
+  
+  ![image](images/images/images/res.png)
 
 </details>
 
-## Todo
+| Modèles             | Accuracy - Genre  | AUC | F1_Score | Precision | Recall | MAE  | MSE    | RMSE  | Age Accuracy (10 ans d'écart en %) | #Params |
+|---------------------|-------------------|-----|----------|-----------|--------|------|--------|-------|------------------------------------|---------|
+| Genre               |                   |     |          |           |        | -    | -      | -     | -                                  |         |
+|         Age         |         -         |  -  |     -    |     -     |    -   |      |        |       |                                    |         |
+| Genre + Age         |                   |     |          |           |        |      |        |       |                                    |         |
+| TA - EfficientNetB2 |        0.94       |  -  |   0.94   |    0.93   |  0.94  | 5.57 |  63.35 |  7.96 |               83.42%               |         |
+| TA - EfficientNetB0 |        0.90       |  -  |   0.90   |    0.90   |  0.81  |   7  |  96.95 |  9.85 |               75.96%               |         |
+| TA - EfficientNetB1 |        0.90       |  -  |   0.91   |    0.90   |  0.91  | 6.98 | 103.55 | 10.18 |               76.06%               |         |
+|      TA - VGG16     |        0.88       |  -  |   0.89   |    0.89   |  0.89  | 6.86 | 134.40 | 11.59 |               69.57%               |         |
+|   TA - MobileNetV2  |        0.93       |     |   0.93   |    0.93   |  0.93  | 5.83 |  68.23 |  8.26 |                82.71               |   3.2M  |
 
-...
+En résumé, le meilleur modèle pré-entrainé est EfficientNetB2 qui prime avec 94 % d'accuracy pour le genre, avec 5.57 d'MAE. Autrement dit, le modèle peut se tromper de genre avec une probabilité de 7%, tandis que pour l'âge, le modèle est susceptible de se tromper entre 5 et 6 ans d'écart. Il peut aussi être ammené à une probabilité de se rapprocher de 83.42 % entre 0 et jusqu'à 10 ans de plus. 
 
-### Contents
 
-#### Inference
-
-- [✔️] Implement code for performing inference using the trained model.
-- [✔️] Provide instructions on how to use the inference code with sample input data.
-
-#### Experiments
-
-##### Train and Evaluate the Model Using Various Datasets
-
-- [ ] Conduct experiments to train and evaluate the model using different datasets.
-- [ ] Document the datasets used, training process, and evaluation results.
-- [ ] Provide guidelines on how to adapt the code for using custom datasets.
-
-##### Train the Model Using One Dataset and Test it on a Different One
-
-- [ ] Perform experiments to train the model on one dataset and evaluate its performance on a different dataset.
-- [ ] Describe the process of training and testing on different datasets.
-- [ ] Report the evaluation metrics and discuss the results.
-
-##### Analyze the Loss Value with Respect to Age, Gender, and Race
-
-- [ ] Analyze the loss value of the model with respect to age, gender, and race.
-- [ ] Provide code or scripts to calculate and visualize the loss values for different demographic groups.
-- [ ] Discuss the insights and implications of the analysis.
-
-##### Analyze the Model's Sensitivity
-
-- [ ] Conduct sensitivity analysis to understand the model's response to variations in input data.
-- [ ] Outline the methodology and metrics used for sensitivity analysis.
-- [ ] Present the findings and interpretations of the sensitivity analysis.
-
-##### Create a Heatmap for the Face Images
-
-- [ ] Develop code to generate heatmaps for face images based on the model's predictions or activations.
-- [ ] Explain the process of creating heatmaps and their significance in understanding the model's behavior.
-- [ ] Provide examples and visualizations of the generated heatmaps.
-
-##### Use the Model to Perform Age Estimation on a Webcam Image
-
-- [ ] Integrate the model with webcam functionality to perform age estimation on real-time images.
-- [ ] Detail the steps and code required to use the model for age estimation on webcam images.
-- [ ] Include any necessary dependencies or setup instructions.
+## ✨ Demos
+- [Hugging Face Spaces Application Demo ](https://huggingface.co/spaces/samsam2908/ia_sae)
