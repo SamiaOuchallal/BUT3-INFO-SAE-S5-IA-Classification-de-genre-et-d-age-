@@ -1,7 +1,6 @@
 # Objectif
 
 Ce notebook se concentre sur le prétraitement et la préparation des données pour un modèle de prédiction simultanée du genre et de l'âge. Les données sont organisées en ensembles d'entraînement, de validation et de test, et sont prétraitées pour être utilisées efficacement par un modèle de deep learning.
-Choix méthodologiques
 
 # 1. Organisation des données
 
@@ -51,3 +50,52 @@ Choix méthodologiques
 # 5. Visualisation des données
 
 - Affichage d'un échantillon d'images : Un échantillon de 10 images est affiché avec leur genre et leur âge pour vérifier visuellement que les données sont correctement chargées et prétraitées.
+
+# 6. Architecture du modèle
+
+- Entrée unique, sorties multiples : Le modèle prend une image en entrée et produit deux sorties :
+
+  - Une sortie pour l'âge (régression).
+  - Une sortie pour le genre (classification binaire).
+- Couches convolutives partagées : Les couches convolutives sont partagées entre les deux tâches pour extraire des caractéristiques communes à partir des images.
+- Branches séparées :
+  - Âge : Une couche dense de 256 neurones avec activation ReLU, suivie d'une couche de dropout (30 %) et d'une sortie linéaire pour la régression.
+  - Genre : Une couche dense de 256 neurones avec activation ReLU, suivie d'une couche de dropout (30 %) et d'une sortie sigmoïde pour la classification binaire.
+
+### Régularisation
+
+- Régularisation L2 : Appliquée aux couches convolutives et denses pour éviter le surapprentissage.
+
+- Dropout : Utilisé dans les branches d'âge et de genre pour réduire le surapprentissage.
+
+### Fonctions de perte
+
+- Âge : Erreur quadratique moyenne (MSE) pour la régression.
+
+- Genre : Entropie croisée binaire (BinaryCrossentropy) pour la classification.
+
+### Métriques d'évaluation
+
+- Âge : Erreur absolue moyenne (MAE), erreur quadratique moyenne (MSE) et racine de l'erreur quadratique moyenne (RMSE).
+
+- Genre : Précision (Accuracy).
+
+### Optimiseur
+
+- Adam : Utilisé avec un taux d'apprentissage de 1e-4.
+
+### Callbacks
+
+- Early Stopping : Arrête l'entraînement si la perte de validation ne s'améliore pas pendant 5 époques et restaure les meilleurs poids.
+
+- ReduceLROnPlateau : Réduit le taux d'apprentissage si la perte de validation ne s'améliore pas pendant 3 époques.
+
+## Alternatives possibles
+
+- Autres fonctions de perte : Pour le genre, on pourrait utiliser une perte focal loss si les classes sont déséquilibrées.
+
+- Taux d'apprentissage adaptatif : On pourrait utiliser un scheduler pour ajuster dynamiquement le taux d'apprentissage pendant l'entraînement.
+
+- ModelCheckpoint : Sauvegarder les poids du modèle à chaque amélioration de la perte de validation.
+
+- TensorBoard : Utiliser TensorBoard pour visualiser les métriques d'entraînement en temps réel.
