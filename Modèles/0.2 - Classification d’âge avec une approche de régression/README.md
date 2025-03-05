@@ -92,3 +92,56 @@ Ce notebook se concentre sur la prédiction de l'âge à partir d'images en util
 ## Alternatives possibles
 
 - Autres techniques d'augmentation : On pourrait ajouter d'autres transformations (luminosité, ajout de bruit, ...)
+
+# 8. Architecture du modèle
+
+- Couches de convolution : Le modèle utilise quatre couches de convolution (Conv2D) avec des noyaux de taille 3x3 et une fonction d'activation ReLU. Ces couches capturent les motifs locaux dans les images (comme les bords, les textures, etc.).
+
+- Nombre de filtres : Le nombre de filtres augmente progressivement (32, 64, 128, 256) pour permettre au modèle d'apprendre des caractéristiques plus complexes au fur et à mesure que la profondeur du réseau augmente.
+
+- Régularisation L2 : La première couche de convolution inclut une régularisation L2 pour pénaliser les poids importants et réduire le surapprentissage.
+
+- Normalisation par lots (Batch Normalization) : Appliquée après chaque couche de convolution pour stabiliser et accélérer l'entraînement en normalisant les activations.
+
+- Pooling : Des couches de max-pooling (MaxPooling2D) avec une fenêtre de 2x2 sont utilisées pour réduire la dimension spatiale des caractéristiques tout en conservant les informations les plus importantes.
+
+- Global Average Pooling : Une couche de GlobalAveragePooling2D est utilisée pour réduire les caractéristiques à un vecteur unidimensionnel avant de passer aux couches denses. Cela réduit le nombre de paramètres et évite le surapprentissage.
+
+- Couches denses : Une couche dense de 128 neurones avec activation ReLU est utilisée pour combiner les caractéristiques extraites. Une régularisation L2 est également appliquée ici.
+
+- Dropout : Un taux de dropout de 0.5 est utilisé pour réduire le surapprentissage en désactivant aléatoirement 50 % des neurones pendant l'entraînement.
+
+- Sortie : La couche de sortie est une couche dense avec un seul neurone et une activation linéaire, adaptée à une tâche de régression (prédiction d'âge).
+
+## Alternatives possibles
+
+- Plus de couches de convolution : On pourrait ajouter plus de couches de convolution pour capturer des caractéristiques plus complexes, mais cela augmenterait le risque de surapprentissage et le temps d'entraînement.
+
+- Pooling alternatif : Au lieu de GlobalAveragePooling2D, on pourrait utiliser une couche Flatten pour aplatir les caractéristiques, mais cela augmenterait le nombre de paramètres.
+
+- Régularisation L1 : Au lieu de L2, on pourrait utiliser une régularisation L1 pour pénaliser les poids de manière différente.
+
+- Dropout différent : Le taux de dropout pourrait être autre (par exemple, 0.3 ou 0.4) ce qui changerait les performances du modèle.
+
+# 9. Compilation du modèle
+
+- Optimiseur : L'optimiseur Adam est utilisé avec un taux d'apprentissage de 0.001. Nous l'avons choisi pour sa capacité à ajuster automatiquement le taux d'apprentissage.
+
+- Fonction de perte : La perte est mesurée par l'erreur quadratique moyenne (MSE), qui est couramment utilisée pour les tâches de régression.
+
+- Métrique : L'erreur absolue moyenne (MAE) est utilisée comme métrique pour évaluer les performances du modèle.
+
+## Alternatives possibles
+
+- Autres optimiseurs : On pourrait utiliser d'autres optimiseurs comme RMSprop ou SGD avec momentum.
+
+- Taux d'apprentissage adaptatif : On pourrait utiliser un scheduler pour ajuster dynamiquement le taux d'apprentissage pendant l'entraînement.
+
+- Autres fonctions de perte : Pour des tâches de régression, on pourrait également utiliser l'erreur absolue moyenne (MAE) comme fonction de perte.
+
+- Métriques supplémentaires : On pourrait ajouter des métriques comme le coefficient de détermination (R²) pour évaluer la qualité des prédictions.
+
+# 10. Résumé du modèle
+
+- model.summary() : Affiche un résumé de l'architecture du modèle y compris le nombre de paramètres à chaque couche. Cela permet de vérifier que le modèle est correctement construit et de comprendre sa complexité.
+
