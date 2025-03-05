@@ -237,16 +237,16 @@ Chaque image est en dimension 224x224
 
 | Modèles             | Accuracy - Genre  | AUC | F1_Score | Precision | Recall | MAE  | MSE    | RMSE  | Age Accuracy (10 ans d'écart en %) | #Params |
 |---------------------|-------------------|-----|----------|-----------|--------|------|--------|-------|------------------------------------|---------|
-| Genre               |                   |     |          |           |        | -    | -      | -     | -                                  |         |
-|         Age         |         -         |  -  |     -    |     -     |    -   | 6.08 |  83.92 |  9.16 |                                    | 423,361 |
-| Genre + Age         |        0.91       |  -  |          |           |        | 7.09 |  96    |  9.77 |                                    |8,779,970|
-| TA - EfficientNetB2 |        0.94       |  -  |   0.94   |    0.93   |  0.94  | 5.57 |  63.35 |  7.96 |               83.42%               |         |
+| Genre               |        81.66 %    |0.90 |   0.82   |    0.82   |  0.82  |  -   | -     | -    | -                                    |         |
+|         Age         |         -         |  -  |     -    |     -     |    -   | 5.81 |  63.45 |  9.24 |                                    | 423,361 |
+| Genre + Age         |        0.90       |  -  |          |           |        | 5.81 |  63.45 |  9.24 |                                    |8,779,970|
+| TA - EfficientNetB2 |        0.9373     |  -  |   0.94   |    0.95   |  0.93  | 5.52 |  62.79 |  7.92 |               83.64%               |         |
 | TA - EfficientNetB0 |        0.90       |  -  |   0.90   |    0.90   |  0.81  |   7  |  96.95 |  9.85 |               75.96%               |         |
 | TA - EfficientNetB1 |        0.90       |  -  |   0.91   |    0.90   |  0.91  | 6.98 | 103.55 | 10.18 |               76.06%               |         |
 |      TA - VGG16     |        0.88       |  -  |   0.89   |    0.89   |  0.89  | 6.86 | 134.40 | 11.59 |               69.57%               |         |
-|   TA - MobileNetV2  |        0.93       |     |   0.93   |    0.93   |  0.93  | 5.83 |  68.23 |  8.26 |                82.71               |   3.2M  |
+|   TA - MobileNetV2  |        0.93       |  -  |   0.93   |    0.93   |  0.93  | 6.07 |  76.52 |  8.75 |                80.64               |   3.2M  |
 
-En résumé, le meilleur modèle pré-entrainé est EfficientNetB2 qui prime avec 94 % d'accuracy pour le genre, avec 5.57 d'MAE. Autrement dit, le modèle peut se tromper de genre avec une probabilité de 7%, tandis que pour l'âge, le modèle est susceptible de se tromper entre 5 et 6 ans d'écart. Il peut aussi être ammené à une probabilité de se rapprocher de 83.42 % entre 0 et jusqu'à 10 ans de plus. 
+En résumé, le meilleur modèle pré-entrainé est EfficientNetB2 qui prime avec 93 % d'accuracy pour le genre, avec 5.52 d'MAE. Autrement dit, le modèle peut se tromper de genre avec une probabilité de 7%, tandis que pour l'âge, le modèle est susceptible de se tromper entre 5 et 6 ans d'écart. Il peut aussi être ammené à une probabilité de se rapprocher de 83.64 % entre 0 et jusqu'à 10 ans de plus. 
 
 
 ## ✨ Demos
