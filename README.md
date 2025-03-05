@@ -239,18 +239,26 @@ Chaque image est en dimension 224x224
 <details>
   <summary><b>MobileNetV2 </b></summary><br/>
   
-  ![image](images/images/539617_1_En_8_Fig10_HTML.png)
+  ![image](images/MobileNetV2-architecture.png)
+
+  
+
+
+  
   
    ### Résultats (50 epochs)
    
-  ![image](images/images/images/MobileNetV2Courbes.png)
+  ![image](images/MobileNetV2Courbe.png)
+  ![image](images/distribmobile.png)
+  ![image](images/scatterplotmobile.png)
+  ![image](images/confugendermobile.png)
 
 </details>
 
 <details>
   <summary><b>ResNet50</b></summary><br/>
   
-  ![image](images/images/images/res.png)
+  ![image](images/archiresnet50.png)
 
 </details>
 
