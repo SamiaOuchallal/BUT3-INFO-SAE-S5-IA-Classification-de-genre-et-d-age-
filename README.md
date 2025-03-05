@@ -278,3 +278,4 @@ En résumé, le meilleur modèle pré-entrainé est EfficientNetB2 qui prime ave
 
 ## ✨ Demos
 - [Hugging Face Spaces Application Demo ](https://huggingface.co/spaces/samsam2908/ia_sae)
+- [Présentation Diapo Canva](https://www.canva.com/design/DAGfd7WHdOo/nloRVfCN5UlDWJWTtCqofQ/edit?utm_content=DAGfd7WHdOo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
