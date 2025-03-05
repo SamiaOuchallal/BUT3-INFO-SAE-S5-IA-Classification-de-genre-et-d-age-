@@ -58,3 +58,37 @@ Ce notebook se concentre sur la prédiction de l'âge à partir d'images en util
 ## Alternatives possibles
     
 - Autres visualisations : On pourrait ajouter des visualisations supplémentaires, comme des graphiques en boîte (boxplots) pour les âges
+
+
+# 6. Générateur de données personnalisé
+
+- Fonction custom_data_generator : Ce générateur personnalisé permet de charger les images en lots (batches) et de les prétraiter à la volée.
+
+    - Chargement des images : Les images sont chargées à l'aide de la bibliothèque PIL (Pillow) et redimensionnées à la taille spécifiée (128x128 pixels).
+
+    - Normalisation des pixels : Les valeurs des pixels sont normalisées entre 0 et 1 en divisant par 255.
+
+    - Extraction de l'âge : L'âge est extrait du nom du fichier et normalisé en le divisant par 116 (l'âge maximum dans le dataset).
+
+    - Gestion des erreurs : Une gestion des erreurs est incluse pour ignorer les fichiers corrompus ou problématiques.
+
+    - Flux continu : Le générateur fonctionne en boucle infinie (while True), ce qui permet de l'utiliser pour l'entraînement de modèles sur de grands datasets.
+
+# 7. Augmentation des données avec ImageDataGenerator
+
+ ### Objectif : Ces transformations augmentent la diversité des données d'entraînement, ce qui aide à réduire le surapprentissage et à améliorer la généralisation du modèle.
+ 
+- Instance ImageDataGenerator : Un générateur d'augmentation de données est créé pour appliquer des transformations aléatoires aux images pendant l'entraînement. Cela inclut :
+
+    - Rotation : Jusqu'à 15 degrés.
+
+    - Décalage horizontal et vertical : Jusqu'à 10 % de la largeur ou de la hauteur de l'image.
+
+    - Zoom : Jusqu'à 20 %.
+
+    - Retournement horizontal : Pour simuler des variations dans l'orientation des visages.
+
+
+## Alternatives possibles
+
+- Autres techniques d'augmentation : On pourrait ajouter d'autres transformations (luminosité, ajout de bruit, ...)
