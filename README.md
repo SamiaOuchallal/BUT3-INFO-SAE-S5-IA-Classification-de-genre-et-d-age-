@@ -186,7 +186,13 @@ Chaque image est en dimension 224x224
   ```python
   base_model_efficientnet = EfficientNetB0(weights='imagenet', include_top=False, input_shape=(IMAGE_SIZE[0], IMAGE_SIZE[1], 3))
   ```
-![image](images/EfficietNetB0Courbe.png)
+![image](images/effib0Courbes.png)
+![image](images/b0ConfuGenre.png)
+![image](images/distribeffib0.png)
+![image](images/scattereffi0.png)
+
+
+
 
  ### Résultats (50 epochs)
 
@@ -194,6 +200,11 @@ Chaque image est en dimension 224x224
   ```python
   base_model_efficientnet = EfficientNetB1(weights='imagenet', include_top=False, input_shape=(IMAGE_SIZE[0], IMAGE_SIZE[1], 3))
   ```
+![image](images/courbeffib1.png)
+![image](images/confueffib1genre.png)
+![image](images/scatteploteffib1.png)
+
+
  ### Résultats (50 epochs)
 
   # EfficientNetB2 :  
@@ -203,6 +214,9 @@ Chaque image est en dimension 224x224
 
  ### Résultats (50 epochs)
   ![image](images/EfficientNetB2Courbes.png)
+  ![image](images/EfficientNetB2DistributionErreursAge.png)
+  ![image](images/EfficientNetB2PredAge.png)
+
 
 
 </details>
@@ -213,7 +227,12 @@ Chaque image est en dimension 224x224
   
    ### Résultats (50 epochs)
 
-  ![ image](images/images/VGG16Courbes.png)
+  ![ image](images/VGG16Courbes.png)
+  ![ image](images/distribVGG16.png)
+  ![ image](images/ConfuMatrixVGG16.png
+)
+
+  
 
 </details>
 
