@@ -243,7 +243,7 @@ Chaque image est en dimension 224x224
 | TA - EfficientNetB2 |        0.9373     |  -  |   0.94   |    0.95   |  0.93  | 5.52 |  62.79 |  7.92 |               83.64%               | 7,499 M |
 | TA - EfficientNetB0 |        0.90       |  -  |   0.90   |    0.89   |  0.91  | 7.58 | 108.06 | 10.40 |               73.45%               | 4,383 M |
 | TA - EfficientNetB1 |        0.90       |  -  |   0.91   |    0.91   |  0.91  | 6.86 | 92.93  | 9.64  |               77.01%               | 8,417 M |
-|      TA - VGG16     |        0.88       |  -  |   0.89   |    0.89   |  0.89  | 6.86 | 134.40 | 11.59 |               69.57%               |         |
+|      TA - VGG16     |        0.88       |  -  |   0.89   |    0.89   |  0.89  | 8.02 | 125.05 | 11.18 |               71.19%               | 15,7 M  |
 |   TA - MobileNetV2  |        0.93       |  -  |   0.93   |    0.93   |  0.93  | 6.07 |  76.52 |  8.75 |                80.64               |   3.2M  |
 
 En résumé, le meilleur modèle pré-entrainé est EfficientNetB2 qui prime avec 93 % d'accuracy pour le genre, avec 5.52 d'MAE. Autrement dit, le modèle peut se tromper de genre avec une probabilité de 7%, tandis que pour l'âge, le modèle est susceptible de se tromper entre 5 et 6 ans d'écart. Il peut aussi être ammené à une probabilité de se rapprocher de 83.64 % entre 0 et jusqu'à 10 ans de plus. 
